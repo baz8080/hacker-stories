@@ -5,7 +5,7 @@
 - npm install
 - npm run dev
 
-## Learnings
+## Single root element
 
 This seems to be done when there isn't a single root element to return.
 
@@ -15,3 +15,7 @@ return (
     </>
 )
 ```
+
+## HTML atributes
+
+htmlFor, not for. for will still be passed through and work in react 16+ but seems to be a discouraged pattern. Since JSX is close to JS, camelCase is used.
