@@ -1,21 +1,29 @@
 import './App.css'
+import React, { useState } from 'react';
 
 const Search = () => {
   
+  const [searchTerm, setSearchTerm] = useState('');
+
   const handleChange = (event) => {
-    console.log(event);
-    console.log(event.target.value);
+    setSearchTerm(event.target.value);
   }
+
+  console.log('search rendered');
 
   return (
     <div>
       <label htmlFor="search">Search:</label>
       <input id="search" type="text" onChange={handleChange}/>
+      <p>Searching for <strong>{searchTerm}</strong></p>
     </div>
   )
 }
 
 const List = (props) =>  {
+
+  console.log('list rendered');
+
   return (
     <ul>
       {props.stories.map((item) => (
@@ -26,6 +34,9 @@ const List = (props) =>  {
 }
 
 const Item = (props) => {
+
+console.log('item rendered');
+
   return (
     <li>
       <span>
@@ -58,6 +69,8 @@ const App = () => {
       objectID: 1,
     },
   ];
+
+  console.log('app rendered');
 
   return (
     <div>
