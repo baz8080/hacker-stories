@@ -1,57 +1,7 @@
 import './App.css'
 import React, { useState } from 'react';
 
-const Search = (props) => {
-  
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-    props.onSearch(event);
-  }
-
-  console.log('search rendered');
-
-  return (
-    <div>
-      <label htmlFor="search">Search:</label>
-      <input id="search" type="text" onChange={handleChange}/>
-      <p>Searching for <strong>{searchTerm}</strong></p>
-    </div>
-  )
-}
-
-const List = (props) =>  {
-
-  console.log('list rendered');
-
-  return (
-    <ul>
-      {props.stories.map((item) => (
-        <Item key={item.objectID} item={item} />
-      ))}
-    </ul>
-  );
-}
-
-const Item = (props) => {
-
-console.log('item rendered');
-
-  return (
-    <li>
-      <span>
-        <a href={props.item.url}>{props.item.title}</a>
-      </span>
-      <span>{props.item.author}</span>
-      <span>{props.item.num_comments}</span>
-      <span>{props.item.points}</span>
-    </li> 
-  )
-}
-
 const App = () => {
-
   const stories = [
     {
       title: 'React',
@@ -71,8 +21,6 @@ const App = () => {
     },
   ];
 
-  console.log('app rendered');
-
   const handleSearch = (event) => {
     console.log(`handleSearch: ${event.target.value}`);
   }
@@ -85,6 +33,46 @@ const App = () => {
         <List stories={stories} />    
     </div>
   );
+}
+
+const Search = (props) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+    props.onSearch(event);
+  }
+
+  return (
+    <div>
+      <label htmlFor="search">Search:</label>
+      <input id="search" type="text" onChange={handleChange}/>
+      <p>Searching for <strong>{searchTerm}</strong></p>
+    </div>
+  )
+}
+
+const List = (props) => {
+  return (
+    <ul>
+      {props.stories.map((item) => (
+        <Item key={item.objectID} item={item} />
+      ))}
+    </ul>
+  );
+}
+
+const Item = (props) => {
+  return (
+    <li>
+      <span>
+        <a href={props.item.url}>{props.item.title}</a>
+      </span>
+      <span>{props.item.author}</span>
+      <span>{props.item.num_comments}</span>
+      <span>{props.item.points}</span>
+    </li> 
+  )
 }
 
 export default App
