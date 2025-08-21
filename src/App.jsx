@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import React, { useState } from 'react';
 
 const App = () => {
@@ -25,29 +25,33 @@ const App = () => {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-  }
+  };
 
   const filteredStories = stories.filter((story) =>
-    story.title.toLowerCase().includes(searchTerm.toLowerCase())
+    story.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
     <div>
       <h1>My Hacker Stories</h1>
       <Search search={searchTerm} onSearch={handleSearch} />
-      {searchTerm && <p>Searching for <strong>{searchTerm}</strong></p>}
+      {searchTerm && (
+        <p>
+          Searching for <strong>{searchTerm}</strong>
+        </p>
+      )}
       <hr />
       <List stories={filteredStories} />
     </div>
   );
-}
+};
 
 const Search = ({ search, onSearch }) => (
   <div>
     <label htmlFor="search">Search:</label>
     <input id="search" type="text" onChange={onSearch} value={search} />
   </div>
-)
+);
 
 const List = ({ stories }) => (
   <ul>
@@ -55,17 +59,9 @@ const List = ({ stories }) => (
       <Item key={item.objectID} item={item} />
     ))}
   </ul>
-)
+);
 
-const Item = ({ 
-  item  : {
-    url,
-    title,
-    author,
-    num_comments,
-    points,
-  }
-}) => (
+const Item = ({ item: { url, title, author, num_comments, points } }) => (
   <li>
     <span>
       <a href={url}>{title}</a>
@@ -74,6 +70,6 @@ const Item = ({
     <span>{num_comments}</span>
     <span>{points}</span>
   </li>
-)
+);
 
-export default App
+export default App;
