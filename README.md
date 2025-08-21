@@ -10,3 +10,19 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Linting
+
+```
+npm install --save-dev \
+  eslint prettier \
+  eslint-config-prettier eslint-plugin-prettier \
+  eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+```
+
+Then add .eslintrc.json, .prettierrc, and update scripts in package.json
+
+```
+npm run lint
+npm run format
+```
