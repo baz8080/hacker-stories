@@ -1,8 +1,10 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState('react');
+  const [searchTerm, setSearchTerm] = useState(
+    localStorage.getItem('search') || 'React'
+  );
 
   const stories = [
     {
@@ -22,6 +24,10 @@ const App = () => {
       objectID: 1,
     },
   ];
+
+  React.useEffect(() => {
+    localStorage.setItem('search', event.target.value);
+  }, [searchTerm]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -56,12 +62,12 @@ const Search = ({ search, onSearch }) => (
 const List = ({ stories }) => (
   <ul>
     {stories.map((item) => (
-      <Item key={item.objectID} item={item} />
+      <Item key={item.objectID} {...item} />
     ))}
   </ul>
 );
 
-const Item = ({ item: { url, title, author, num_comments, points } }) => (
+const Item = ({ url, title, author, num_comments, points }) => (
   <li>
     <span>
       <a href={url}>{title}</a>

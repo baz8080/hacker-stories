@@ -58,3 +58,13 @@ return (
     </div>
 )
 ```
+
+Almost always use object destructuring for props in a function component’s function signature,
+because props are rarely used themselves. Exception: When props are only passed through the
+component to the next child component (see when to use spread operator).
+* Use the spread operator when you want to pass all key/value pairs of an object to a child
+component in JSX. For example, often props themselves are not used in a component but
+only passed along to the next component. Then it makes sense to just spread the props object
+{...props} to the next component.
+* Use the rest operator when you only want to split out certain properties from your props object.
+* Use nested destructuring only when it improves readability.
